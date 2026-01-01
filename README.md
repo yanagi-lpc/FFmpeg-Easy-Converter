@@ -10,7 +10,7 @@ Windows 向け GUI ツールです。
 
 ## 概要
 
-- FFmpeg を内部で使用したファイル変換 GUI
+- FFmpeg を使用したファイル変換 GUI
 - Windows 専用
 
 変換元ファイルと変換後ファイルを指定し、  

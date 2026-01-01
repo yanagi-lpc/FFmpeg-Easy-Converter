@@ -1,4 +1,4 @@
-# FFmpeg-converter-GUI
+# FFmpeg-Easy-Converter
 
 FFmpeg を使って、動画・音声・画像ファイルの変換を簡単に行うための  
 Windows 向け GUI ツールです。

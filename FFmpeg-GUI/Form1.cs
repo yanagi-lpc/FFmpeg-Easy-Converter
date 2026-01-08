@@ -1,6 +1,5 @@
-using System.Diagnostics;
 using System.ComponentModel;
-using System.Drawing.Text;
+using System.Diagnostics;
 
 namespace FFmpeg_GUI
 {
@@ -28,8 +27,44 @@ namespace FFmpeg_GUI
         private void buttonout_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "MP4ファイル (*.mp4)|*.mp4|すべてのファイル (*.*)|*.*";
-            sfd.DefaultExt = "mp4";
+            sfd.Filter =
+                "----------動画----------|*.*|" +
+                "MP4|*.mp4|" +
+                "MKV|*.mkv|" +
+                "WebM|*.webm|" +
+                "AVI|*.avi|" +
+                "MOV|*.mov|" +
+                "WMV|*.wmv|" +
+                "FLV|*.flv|" +
+
+                "----------音声----------|*.*|" +
+
+                "MP3|*.mp3|" +
+                "AAC|*.aac|" +
+                "M4A|*.m4a|" +
+                "WAV|*.wav|" +
+                "FLAC|*.flac|" +
+                "AIFF|*.aiff|" +
+                "OGG Vorbis|*.ogg|" +
+                "Opus|*.opus|" +
+
+                "----------画像----------|*.*|" +
+
+                "PNG|*.png|" +
+                "JPEG|*.jpg|" +
+                "JPEG XL|*.jxl|" +
+                "GIF|*.gif|" +
+                "BMP|*.bmp|" +
+                "ICO|*.ico|" +
+                "WebP|*.webp|" +
+                "TIFF|*.tif;*.tiff|" +
+                "AVIF|*.avif|" +
+                "HEIF|*.heic;*.heif|" +
+
+                "その他|*.*";
+
+            sfd.FilterIndex = 2;
+            sfd.AddExtension = true;
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
@@ -60,9 +95,40 @@ namespace FFmpeg_GUI
                 psi.FileName = "ffmpeg"; // PATH通ってる前提
                 psi.Arguments = $"-y -i \"{input}\" \"{output}\"";
                 psi.UseShellExecute = false;
-                psi.CreateNoWindow = false;
+                psi.CreateNoWindow = true;
 
-                Process.Start(psi);
+                psi.RedirectStandardError = true;
+                psi.RedirectStandardOutput = true;
+
+                psi.StandardErrorEncoding = System.Text.Encoding.UTF8;
+                psi.StandardOutputEncoding = System.Text.Encoding.UTF8;
+
+                Process proc = new Process();
+                proc.StartInfo = psi;
+                proc.Start();
+
+                string error = proc.StandardError.ReadToEnd();
+                proc.WaitForExit();
+
+                // ダイアログ表示
+                if (proc.ExitCode != 0)
+                {
+                    MessageBox.Show(
+                        "FFmpegでエラーが発生しました。\n\n" + error,
+                        "エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "ファイル変換が完了しました。",
+                        "完了",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
             }
             catch (Win32Exception)
             {

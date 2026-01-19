@@ -41,6 +41,8 @@
             label3 = new Label();
             label4 = new Label();
             linkLabel1 = new LinkLabel();
+            comboQuality = new ComboBox();
+            label5 = new Label();
             SuspendLayout();
             // 
             // buttonout
@@ -129,11 +131,27 @@
             linkLabel1.VisitedLinkColor = Color.Black;
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
+            // comboQuality
+            // 
+            resources.ApplyResources(comboQuality, "comboQuality");
+            comboQuality.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboQuality.FormattingEnabled = true;
+            comboQuality.Items.AddRange(new object[] { resources.GetString("comboQuality.Items"), resources.GetString("comboQuality.Items1"), resources.GetString("comboQuality.Items2"), resources.GetString("comboQuality.Items3"), resources.GetString("comboQuality.Items4"), resources.GetString("comboQuality.Items5") });
+            comboQuality.Name = "comboQuality";
+            comboQuality.SelectedIndexChanged += comboQuality_SelectedIndexChanged;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(label5, "label5");
+            label5.Name = "label5";
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ScrollBar;
+            Controls.Add(label5);
+            Controls.Add(comboQuality);
             Controls.Add(linkLabel1);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -166,5 +184,7 @@
         private Label label3;
         private Label label4;
         private LinkLabel linkLabel1;
+        private ComboBox comboQuality;
+        private Label label5;
     }
 }

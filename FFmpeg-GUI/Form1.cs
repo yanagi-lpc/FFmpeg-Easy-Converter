@@ -175,5 +175,22 @@ namespace FFmpeg_GUI
         {
 
         }
+
+        private void comboQuality_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboQuality.SelectedIndex == 0)
+                return;
+            string selected = comboQuality.SelectedItem.ToString();
+
+            // ( ) ‚Ì’†‚ð‚»‚Ì‚Ü‚ÜŽg‚¤
+            int start = selected.IndexOf('(');
+            int end = selected.IndexOf(')');
+
+            if (start >= 0 && end > start)
+            {
+                string option = selected.Substring(start + 1, end - start - 1);
+                textBoxopt.Text = option;
+            }
+        }
     }
 }

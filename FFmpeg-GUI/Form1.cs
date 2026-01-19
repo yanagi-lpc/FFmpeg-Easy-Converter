@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace FFmpeg_GUI
 {
@@ -82,6 +83,7 @@ namespace FFmpeg_GUI
         {
             string input = textBoxin.Text;
             string output = textBoxout.Text;
+            string ex_option = textBoxopt.Text;
 
             if (string.IsNullOrWhiteSpace(input) || string.IsNullOrWhiteSpace(output))
             {
@@ -93,7 +95,7 @@ namespace FFmpeg_GUI
             {
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.FileName = "ffmpeg"; // PATH通ってる前提
-                psi.Arguments = $"-y -i \"{input}\" \"{output}\"";
+                psi.Arguments = $"-y -i \"{input}\" {ex_option} \"{output}\"";
                 psi.UseShellExecute = false;
                 psi.CreateNoWindow = true;
 
@@ -143,6 +145,33 @@ namespace FFmpeg_GUI
         }
 
         private void title_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LinkLabel link = (LinkLabel)sender;
+            link.LinkVisited = true;  // リンクを押された色にする
+            ProcessStartInfo pi = new ProcessStartInfo()
+            {
+                FileName = "https://github.com/yanagi-lpc",
+                UseShellExecute = true, // 重要
+            };
+            Process.Start(pi);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxin_TextChanged(object sender, EventArgs e)
         {
 
         }

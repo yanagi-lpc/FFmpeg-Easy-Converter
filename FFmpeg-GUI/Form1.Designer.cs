@@ -36,6 +36,11 @@
             convbtn = new Button();
             title = new Label();
             label1 = new Label();
+            label2 = new Label();
+            textBoxopt = new TextBox();
+            label3 = new Label();
+            label4 = new Label();
+            linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
             // buttonout
@@ -60,6 +65,7 @@
             textBoxin.BackColor = SystemColors.ButtonHighlight;
             textBoxin.Name = "textBoxin";
             textBoxin.ReadOnly = true;
+            textBoxin.TextChanged += textBoxin_TextChanged;
             // 
             // textBoxout
             // 
@@ -88,11 +94,51 @@
             resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
             // 
+            // label2
+            // 
+            resources.ApplyResources(label2, "label2");
+            label2.Name = "label2";
+            label2.Click += label2_Click;
+            // 
+            // textBoxopt
+            // 
+            resources.ApplyResources(textBoxopt, "textBoxopt");
+            textBoxopt.BackColor = SystemColors.ButtonHighlight;
+            textBoxopt.Name = "textBoxopt";
+            textBoxopt.TextChanged += textBox1_TextChanged;
+            // 
+            // label3
+            // 
+            resources.ApplyResources(label3, "label3");
+            label3.Name = "label3";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(label4, "label4");
+            label4.ForeColor = Color.Red;
+            label4.Name = "label4";
+            // 
+            // linkLabel1
+            // 
+            resources.ApplyResources(linkLabel1, "linkLabel1");
+            linkLabel1.ActiveLinkColor = Color.Black;
+            linkLabel1.DisabledLinkColor = Color.Black;
+            linkLabel1.LinkColor = Color.Black;
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.TabStop = true;
+            linkLabel1.VisitedLinkColor = Color.Black;
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ScrollBar;
+            Controls.Add(linkLabel1);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(textBoxopt);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(title);
             Controls.Add(convbtn);
@@ -115,5 +161,10 @@
         private Button convbtn;
         private Label title;
         private Label label1;
+        private Label label2;
+        private TextBox textBoxopt;
+        private Label label3;
+        private Label label4;
+        private LinkLabel linkLabel1;
     }
 }
